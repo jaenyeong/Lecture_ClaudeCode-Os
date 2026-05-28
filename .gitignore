@@ -1,0 +1,4 @@
+# Skill 호출 통계 로그 — 개인 사용량이므로 저장소에 올리지 않는다.
+# (디렉터리는 .claude/logs/.gitkeep 로 보존)
+.claude/logs/*.jsonl
+.claude/logs/.skill_stat_pending.json
