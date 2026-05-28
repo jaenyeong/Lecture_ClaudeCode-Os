@@ -5,8 +5,8 @@ description: 누적된 스킬 호출 통계(호출 횟수, 평균/총 소요 시
 
 # skill-stat
 
-PreToolUse / PostToolUse 훅이 `.claude/logs/skill-stats.jsonl` 에 쌓아 둔
-스킬 호출 로그를 집계해서 CLI 표로 출력하는 스킬이다.
+PreToolUse / PostToolUse / UserPromptSubmit 훅이 `.claude/logs/skill-stats.jsonl`
+에 쌓아 둔 스킬 호출 로그를 집계해서 CLI 표로 출력하는 스킬이다.
 
 ## 호출 트리거
 
@@ -28,12 +28,14 @@ PreToolUse / PostToolUse 훅이 `.claude/logs/skill-stats.jsonl` 에 쌓아 둔
 
 | 컬럼 | 설명 |
 |---|---|
-| `SKILL` | 스킬 이름 (`tool_input.skill` 값 그대로) |
-| `COUNT` | 호출 횟수 |
-| `AVG(ms)` | 평균 소요 시간 (PreToolUse → PostToolUse 사이 경과) |
-| `TOTAL(ms)` | 총 소요 시간 |
+| `SKILL` | 스킬 이름 |
+| `COUNT` | 호출 횟수 (사용자 입력 + 어시스턴트 호출 합산) |
+| `AVG(ms)` | 평균 소요 시간 — duration 이 측정된 호출만 평균 |
+| `TOTAL(ms)` | 총 소요 시간 — duration 이 측정된 호출 합 |
 | `LAST USED` | 가장 최근 호출 시각 (UTC, ISO8601) |
 
+`AVG/TOTAL` 가 `—` 인 경우는 해당 스킬이 사용자 입력(`/<skill-name>`)으로만
+호출돼서 duration 을 측정할 수 없었다는 뜻이다 (아래 "기록 경로" 참고).
 정렬은 `COUNT` 내림차순 — 가장 많이 쓴 스킬이 맨 위.
 
 ## 데이터 소스
@@ -42,12 +44,30 @@ PreToolUse / PostToolUse 훅이 `.claude/logs/skill-stats.jsonl` 에 쌓아 둔
 - 한 줄 = 한 번의 스킬 호출
 - 스키마:
   ```json
-  {"ts": "2026-05-28T20:30:00Z", "skill": "tech-qna", "duration_ms": 1234, "session_id": "..."}
+  {
+    "ts": "2026-05-28T20:30:00Z",
+    "skill": "tech-qna",
+    "duration_ms": 1234,
+    "session_id": "...",
+    "source": "skill_tool" | "user_prompt"
+  }
   ```
 
-훅 자체는 `.claude/settings.json` 의 PreToolUse / PostToolUse 에
-`matcher: "Skill"` 로 걸려 있고, 실제 기록 로직은
-`.claude/hooks/skill_stat.py` 에 있다.
+## 기록 경로 두 가지
+
+스킬은 두 가지 방식으로 호출되며, 훅도 두 경로로 기록한다.
+
+| 경로 | 트리거 | 훅 이벤트 | duration_ms | source |
+|---|---|---|---|---|
+| **Skill tool 호출** | 어시스턴트가 `Skill` 도구를 자율적으로 부름 | `PreToolUse` + `PostToolUse` (matcher=`Skill`) | 측정됨 (ms) | `skill_tool` |
+| **사용자 슬래시 입력** | 사용자가 입력창에 `/<name>` 입력 | `UserPromptSubmit` | `null` (측정 불가) | `user_prompt` |
+
+`UserPromptSubmit` 경로는 `.claude/skills/<name>/SKILL.md` 가 실제로 존재할
+때만 기록한다 — `/help`, `/clear` 같은 built-in 슬래시 커맨드와 플러그인
+네임스페이스(예: `/oh-my-claudecode:ralph`)는 통계 대상에서 제외된다.
+
+훅 등록 위치: `.claude/settings.json`
+실제 로직: `.claude/hooks/skill_stat.py`
 
 ## 관리 팁
 

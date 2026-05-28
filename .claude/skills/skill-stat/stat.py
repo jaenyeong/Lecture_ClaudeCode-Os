@@ -60,22 +60,33 @@ def aggregate(records: list) -> list:
 
     rows = []
     for skill, b in by_skill.items():
-        avg = (b["total_ms"] // b["duration_count"]) if b["duration_count"] else 0
+        has_duration = b["duration_count"] > 0
+        avg = (b["total_ms"] // b["duration_count"]) if has_duration else None
         rows.append({
             "skill": skill,
             "count": b["count"],
             "avg_ms": avg,
-            "total_ms": b["total_ms"],
+            "total_ms": b["total_ms"] if has_duration else None,
             "last_used": b["last_used"] or "-",
         })
     rows.sort(key=lambda r: r["count"], reverse=True)
     return rows
 
 
+def _fmt_ms(v) -> str:
+    return "—" if v is None else str(v)
+
+
 def render_table(rows: list) -> str:
     headers = ["SKILL", "COUNT", "AVG(ms)", "TOTAL(ms)", "LAST USED"]
     data = [
-        [r["skill"], str(r["count"]), str(r["avg_ms"]), str(r["total_ms"]), r["last_used"]]
+        [
+            r["skill"],
+            str(r["count"]),
+            _fmt_ms(r["avg_ms"]),
+            _fmt_ms(r["total_ms"]),
+            r["last_used"],
+        ]
         for r in rows
     ]
     widths = []
