@@ -1,0 +1,5 @@
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"tech-qna"}
+{"t":0,"agent":"aee35d3","agent_type":"fact-checker","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"aee35d3","agent_type":"fact-checker","event":"agent_stop","success":true,"duration_ms":50177}
+{"t":0,"agent":"a8dee81","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"abecff3","agent_type":"unknown","event":"agent_stop","success":true}
