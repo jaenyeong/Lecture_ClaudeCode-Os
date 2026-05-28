@@ -32,26 +32,56 @@
   "hotPaths": [
     {
       "path": "1주차.pdf",
-      "accessCount": 4,
-      "lastAccessed": 1779966304580,
-      "type": "file"
-    },
-    {
-      "path": ".claude/skills/commit/SKILL.md",
-      "accessCount": 2,
-      "lastAccessed": 1779966006499,
+      "accessCount": 6,
+      "lastAccessed": 1779966796623,
       "type": "file"
     },
     {
       "path": ".claude/skills/tech-qna/SKILL.md",
-      "accessCount": 2,
-      "lastAccessed": 1779966250859,
+      "accessCount": 3,
+      "lastAccessed": 1779966587274,
+      "type": "file"
+    },
+    {
+      "path": ".claude/skills/commit/SKILL.md",
+      "accessCount": 3,
+      "lastAccessed": 1779967123933,
       "type": "file"
     },
     {
       "path": ".claude/settings.local.json",
       "accessCount": 1,
       "lastAccessed": 1779965745133,
+      "type": "file"
+    },
+    {
+      "path": ".claude/agents/fact-checker.md",
+      "accessCount": 1,
+      "lastAccessed": 1779966479314,
+      "type": "file"
+    },
+    {
+      "path": ".claude/hooks/skill_stat.py",
+      "accessCount": 1,
+      "lastAccessed": 1779966896581,
+      "type": "file"
+    },
+    {
+      "path": ".claude/settings.json",
+      "accessCount": 1,
+      "lastAccessed": 1779966905602,
+      "type": "file"
+    },
+    {
+      "path": ".claude/skills/skill-stat/stat.py",
+      "accessCount": 1,
+      "lastAccessed": 1779966919641,
+      "type": "file"
+    },
+    {
+      "path": ".claude/skills/skill-stat/SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1779966936447,
       "type": "file"
     }
   ],
