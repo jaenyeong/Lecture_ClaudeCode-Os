@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1779965306153,
+  "projectRoot": "/Users/jaenyeong/Projects/P98_Lecture_ClaudeCode-Os",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {},
+  "hotPaths": [
+    {
+      "path": "1주차.pdf",
+      "accessCount": 2,
+      "lastAccessed": 1779965377162,
+      "type": "file"
+    },
+    {
+      "path": ".claude/skills/commit/SKILL.md",
+      "accessCount": 1,
+      "lastAccessed": 1779965430203,
+      "type": "file"
+    },
+    {
+      "path": ".claude/settings.local.json",
+      "accessCount": 1,
+      "lastAccessed": 1779965745133,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
