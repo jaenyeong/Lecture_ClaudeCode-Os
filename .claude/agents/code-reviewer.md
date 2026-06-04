@@ -70,6 +70,8 @@ NEXTSTEP "나만의 Claude OS 만들기" 1주차에서 만드는 **코드 리뷰
 
 `CLAUDE.md`(글로벌·프로젝트 양쪽)에 정의된 룰과 비교. 예: 본 프로젝트엔 Kotlin DTO 위치 정책, TS 불변성 패턴 등이 있다. 위반 시 지적.
 
+**전문성 컨텍스트 주입 (필독):** `.kt` 변경을 리뷰할 때는 반드시 [`.claude/rules/kotlin-style.md`](../rules/kotlin-style.md)를 먼저 `Read` 하여 그 기준으로 대조한다. 특히 **Request/Response DTO 위치 위반**(서비스 inner class·트레일링 data class·companion object 정의)은 🟡 MEDIUM 이상으로, **감사 파라미터 정책 위반**(서비스 public 메서드 첫 파라미터가 `actorId: Long` 아님)은 🟠 HIGH 로 지적한다.
+
 > 단, 프로젝트 컨벤션 룰 위반이 *패키지 구조*나 *레이어 경계* 수준이면 `architecture-reviewer` 영역 — 노트만 남기고 넘긴다.
 
 ### 4) 결함에 심각도 부여
