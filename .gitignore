@@ -2,3 +2,7 @@
 # (디렉터리는 .claude/logs/.gitkeep 로 보존)
 .claude/logs/*.jsonl
 .claude/logs/.skill_stat_pending.json
+
+# oh-my-claudecode 플러그인 런타임 상태 — 세션 로그/replay/자동 스캔 메모리 등
+# 기계가 매 세션 자동 갱신하는 노이즈라 저장소에 올리지 않는다.
+.omc/
