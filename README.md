@@ -70,8 +70,8 @@ pipeline 진입 직후 추가 추론해 검증 강도를 조절한다.
 | 코드 컨벤션·테스트 정책 | 글로벌 룰 + 프로젝트별 보완 | 자동 검증(`/lint-*`, `/test-*`)의 기준 |
 
 > 현재는 L0의 `CLAUDE.md`와 강의 자료만 채워져 있고, L1에는 `/commit` `/push`
-> `/tech-qna` `/skill-stat`, L3에는 `fact-checker` 가 있다. 나머지는 실습을 진행하며
-> 점진적으로 채운다.
+> `/tech-qna` `/skill-stat` `/update-doctor`, L2에는 `/ralph-loop`, L3에는 `fact-checker` 가 있다.
+> 나머지는 실습을 진행하며 점진적으로 채운다.
 
 ## 학습 내용
 * (작성 예정)
